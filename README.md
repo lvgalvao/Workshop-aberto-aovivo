@@ -1,8 +1,8 @@
 ### Instalação e Configuração
 1. Clone o repositório:
 ```bash
-git clone https://github.com/lvgalvao/dataprojectstarterkit.git
-cd dataprojectstarterkit
+git clone https://github.com/lvgalvao/Workshop-aberto-aovivo
+cd Workshop-aberto-aovivo
 ```
 2. Configure a versão correta do Python com `pyenv`:
 ```bash
