@@ -1,0 +1,15 @@
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.11.6'  # Substitua pelo a versão do Python que você usa
+    - name: Instalar dependências
+      run: |
+        pip install -r requirements.txt
+    - name: Rodar testes 
+      run: pytest tests
