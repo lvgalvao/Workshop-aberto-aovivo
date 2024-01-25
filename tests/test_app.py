@@ -14,7 +14,6 @@ def driver():
     options.headless = True  # Executar em modo headless
     driver = webdriver.Firefox(options=options)
     # Iniciar o WebDriver usando GeckoDriver
-    driver = webdriver.Firefox()
     driver.set_page_load_timeout(5)
     yield driver
 
