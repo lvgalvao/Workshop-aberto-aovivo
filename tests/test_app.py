@@ -4,13 +4,15 @@ import pytest
 import subprocess
 from selenium.webdriver.common.by import By
 import os
-
+from selenium.webdriver.firefox.options import Options
 
 @pytest.fixture
 def driver():
     # Iniciar o Streamlit em background
     process = subprocess.Popen(["streamlit", "run", "src/app.py"])
-
+    options = Options()
+    options.headless = True  # Executar em modo headless
+    driver = webdriver.Firefox(options=options)
     # Iniciar o WebDriver usando GeckoDriver
     driver = webdriver.Firefox()
     driver.set_page_load_timeout(5)
