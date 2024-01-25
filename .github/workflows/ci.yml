@@ -13,6 +13,11 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.11.6'  # Substitua pelo a versão do Python que você usa
+    - name: Instalar GeckoDriver
+      run: |
+        wget https://github.com/mozilla/geckodriver/releases/download/v0.29.0/geckodriver-v0.29.0-linux64.tar.gz
+        tar -xzf geckodriver-v0.29.0-linux64.tar.gz
+        sudo mv geckodriver /usr/local/bin/    
     - name: Instalar dependências
       run: |
         pip install -r requirements.txt
