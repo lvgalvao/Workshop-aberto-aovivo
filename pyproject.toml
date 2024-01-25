@@ -1,0 +1,2 @@
+[tool.taskipy.tasks]
+run = "lsof -ti :8501 | xargs kill -9 | streamlit run src/app.py"
