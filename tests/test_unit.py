@@ -1,6 +1,6 @@
 import pytest
 from datetime import datetime
-from src.contrato import Vendas, CategoriaEnum
+from src.contrato import Vendas
 from pydantic import ValidationError
 
 # Testes com dados válidos
