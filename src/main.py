@@ -1,1 +1,1 @@
-print("Nao impacta na CI nem um pouco")
+print("Nao impacta na CI")
