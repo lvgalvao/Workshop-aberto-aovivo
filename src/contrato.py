@@ -11,7 +11,6 @@ class Vendas(BaseModel):
 
     email: EmailStr
     data: datetime
-    valor: PositiveFloat
     quantidade: PositiveInt
     produto: str
     categoria: CategoriaEnum
