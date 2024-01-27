@@ -1,4 +1,9 @@
 ### Instalação e Configuração
+
+Nosso projeto:
+
+https://lvgalvao-workshop-aberto-aovivo-srcapp-508jxg.streamlit.app/
+
 1. Clone o repositório:
 ```bash
 git clone https://github.com/lvgalvao/Workshop-aberto-aovivo
@@ -30,7 +35,7 @@ task run
 task test
 ```
 
-1. Rode a documentação
+6. Rode a documentação
 ```bash
 task docs
 ```
