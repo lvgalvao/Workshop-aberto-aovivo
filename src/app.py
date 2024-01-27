@@ -2,11 +2,12 @@ from frontend import ExcelValidadorUI
 from backend import process_excel, save_dataframe_to_sql
 from dotenv import load_dotenv
 import sentry_sdk
+import os
 
 load_dotenv()
 
 sentry_sdk.init(
-    dsn="https://f6bcf586f490b9ae2befe4b7a7fc0e15@o4505699197452288.ingest.sentry.io/4506642699059200",
+    dsn=os.getenv('SENTRY_DNS'),
     traces_sample_rate=1.0,
     profiles_sample_rate=1.0,
 )
