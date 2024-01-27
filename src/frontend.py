@@ -11,7 +11,7 @@ class ExcelValidadorUI:
         )
 
     def display_header(self):
-        st.title("Teste")
+        st.title("Validador de schema excel")
 
     def upload_file(self):
         return st.file_uploader("Carregue seu arquivo Excel aqui", type=["xlsx"])
@@ -25,6 +25,9 @@ class ExcelValidadorUI:
 
     def display_save_button(self):
         return st.button("Salvar no Banco de Dados")
+    
+    def display_wrong_message(self):
+        return st.error("Necessário corrigir a planilha!")
     
     def display_success_message(self):
         return st.success("Dados salvos com sucesso no banco de dados!")
