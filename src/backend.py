@@ -4,7 +4,7 @@ from contrato import Vendas
 def process_excel(uploaded_file):
     try:
         df = pd.read_excel(uploaded_file)
-
+        erros = []
         # Verificar se há colunas extras no DataFrame
         extra_cols = set(df.columns) - set(Vendas.model_fields.keys())
         if extra_cols:
@@ -15,9 +15,9 @@ def process_excel(uploaded_file):
             try:
                 _ = Vendas(**row.to_dict())
             except Exception as e:
-                raise ValueError(f"Erro na linha {index + 2}: {e}")
+                erros.append(f"Erro na linha {index + 2}: {e}")
 
-        return True, None
+        return True, erros
 
     except ValueError as ve:
         return False, str(ve)
