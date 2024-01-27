@@ -75,8 +75,8 @@ def test_check_mais_de_uma_mensagem_de_erro(driver):
     sleep(3)  # Espera 5 segundos
 
     # Realizar o upload do arquivo de sucesso
-    success_file_path = os.path.abspath("data/multiplos_erros.xlsx")
-    driver.find_element(By.CSS_SELECTOR, 'input[type="file"]').send_keys(success_file_path)
+    multiple_erros_file_path = os.path.abspath("data/multiplos_erros.xlsx")
+    driver.find_element(By.CSS_SELECTOR, 'input[type="file"]').send_keys(multiple_erros_file_path)
 
     # Aguardar a mensagem de sucesso
     sleep(3)
@@ -85,3 +85,21 @@ def test_check_mais_de_uma_mensagem_de_erro(driver):
 
     # Verificar se existem pelo menos duas mensagens de erro
     assert len(error_messages) == 2, f"Quantidade de mensagens de erro encontradas: {len(error_messages)}"
+
+def test_check_usuario_insere_um_excel_valido_e_aparece_um_botao(driver):
+    # Acessar a página do Streamlit
+    driver.get("http://localhost:8501")
+
+    # Aguardar para garantir que a página foi carregada
+    sleep(3)  # Espera 3 segundos
+
+    # Realizar o upload do arquivo de sucesso
+    success_file_path = os.path.abspath("data/correto.xlsx")
+    driver.find_element(By.CSS_SELECTOR, 'input[type="file"]').send_keys(success_file_path)
+
+    # Aguardar a mensagem de sucesso
+    sleep(3)
+    assert "O schema do arquivo Excel está correto!" in driver.page_source
+    # Verificar se o botão "Salvar no Banco de Dados" está presente
+    save_button = driver.find_element(By.XPATH, "//button[text()='Salvar no Banco de Dados']")
+    assert save_button.is_displayed()
