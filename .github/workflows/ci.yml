@@ -1,16 +1,37 @@
 name: ci
-on: [push]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
 jobs:
-  build-and-test:
+  test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9","3.10","3.11","3.12"]
+
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.11.6'
-    - name: Instalar dependências
-      run: |
-        pip install -r requirements.txt
-    - name: Rodar testes 
-      run: pytest tests/test_unit.py
+      - name: Copia os arquivos do repositório
+        uses: actions/checkout@v4
+
+      - name: Instalar o Python  
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version}} 
+
+      - name: Instalar Poetry
+        run: pip install -r requirements-test.txt
+
+      - name: Rodar os testes
+        run: pytest tests/test_unit.py
+
+      - name: Rodar os testes
+        run: echo hello world!        
+
+      - name: Segundo Passo
+        run: echo $(ls)
+
+      - name: Terceiro passo
+        run: echo $(pwd)
