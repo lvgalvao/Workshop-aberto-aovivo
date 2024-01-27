@@ -21,36 +21,36 @@ def driver():
     driver.quit()
     process.kill()
 
-# def test_app_opens(driver):
-#     # Verificar se a página abre
-#     driver.get("http://localhost:8501")
-#     sleep(2)
+def test_app_opens(driver):
+    # Verificar se a página abre
+    driver.get("http://localhost:8501")
+    sleep(2)
 
-# def test_check_title_is(driver):
-#     # Verificar se a página abre
-#     driver.get("http://localhost:8501")
-#     # Verifica se o titulo de página é
-#     sleep(2)
-#     # Capturar o título da página
-#     page_title = driver.title
+def test_check_title_is(driver):
+    # Verificar se a página abre
+    driver.get("http://localhost:8501")
+    # Verifica se o titulo de página é
+    sleep(2)
+    # Capturar o título da página
+    page_title = driver.title
 
-#     # Verificar se o título da página é o esperado
-#     expected_title = "Validador de schema excel"  # Substitua com o título real esperado
-#     assert page_title == expected_title
+    # Verificar se o título da página é o esperado
+    expected_title = "Validador de schema excel"  # Substitua com o título real esperado
+    assert page_title == expected_title
 
-# def test_check_streamlit_h1(driver):
-#     # Acessar a página do Streamlit
-#     driver.get("http://localhost:8501")
+def test_check_streamlit_h1(driver):
+    # Acessar a página do Streamlit
+    driver.get("http://localhost:8501")
 
-#     # Aguardar para garantir que a página foi carregada
-#     sleep(2)  # Espera 5 segundos
+    # Aguardar para garantir que a página foi carregada
+    sleep(2)  # Espera 5 segundos
 
-#     # Capturar o primeiro elemento <h1> da página
-#     h1_element = driver.find_element(By.TAG_NAME, "h1")
+    # Capturar o primeiro elemento <h1> da página
+    h1_element = driver.find_element(By.TAG_NAME, "h1")
 
-#     # Verificar se o texto do elemento <h1> é o esperado
-#     expected_text = "Insira o seu excel para validação"
-#     assert h1_element.text == expected_text
+    # Verificar se o texto do elemento <h1> é o esperado
+    expected_text = "Insira o seu excel para validação"
+    assert h1_element.text == expected_text
 
 def test_check_usuario_pode_inserir_um_excel_e_receber_uma_mensagem(driver):
     # Acessar a página do Streamlit
@@ -101,5 +101,11 @@ def test_check_usuario_insere_um_excel_valido_e_aparece_um_botao(driver):
     sleep(3)
     assert "O schema do arquivo Excel está correto!" in driver.page_source
     # Verificar se o botão "Salvar no Banco de Dados" está presente
-    save_button = driver.find_element(By.XPATH, "//button[text()='Salvar no Banco de Dados']")
-    assert save_button.is_displayed()
+    buttons = driver.find_elements(By.XPATH, "//button")
+    save_button = None
+    for button in buttons:
+        if button.text == "Salvar no Banco de Dados":
+            save_button = button
+            break
+
+    assert save_button is not None and save_button.is_displayed()

@@ -33,28 +33,3 @@ def test_read_data_and_check_schema():
 
     assert df.dtypes.to_dict() == expected_dtype, "O schema do DataFrame não corresponde ao esperado."
 
-def test_check_usuario_pode_inserir_um_excel_e_receber_uma_mensagem():
-    # Configurar o WebDriver
-    driver = webdriver.Chrome()  # ou Firefox(), dependendo do seu navegador
-
-    try:
-        # Acessar a página do Streamlit
-        driver.get("http://localhost:8501")
-
-        # Aguardar para garantir que a página foi carregada
-        sleep(3)  # Espera 3 segundos
-
-        # Realizar o upload do arquivo de sucesso
-        success_file_path = os.path.abspath("data/correto.xlsx")
-        driver.find_element(By.CSS_SELECTOR, 'input[type="file"]').send_keys(success_file_path)
-
-        # Aguardar a mensagem de sucesso
-        sleep(3)
-        assert "O schema do arquivo Excel está correto!" in driver.page_source
-
-        # Verificar se o botão "Salvar no Banco de Dados" está presente
-        save_button = driver.find_element(By.XPATH, "//button[text()='Salvar no Banco de Dados']")
-        assert save_button.is_displayed()
-
-    finally:
-        driver.quit()
