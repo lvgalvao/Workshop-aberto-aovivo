@@ -43,4 +43,4 @@ def process_excel(uploaded_file):
     
 def save_dataframe_to_sql(df):
     # Salva o DataFrame no banco de dados
-    df.to_sql('vendas', con=DATABASE_URL, if_exists='append', index=False)
+    df.to_sql('vendas', con=DATABASE_URL, if_exists='replace', index=False)
